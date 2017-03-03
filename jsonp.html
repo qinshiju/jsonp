@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jsonp.js"></script>
+	<style>
+	#box{
+		width: 400px;
+		margin: 0 auto;
+	}
+	#t1{
+		width: 400px;
+		height: 30px;
+		font-size: 20px;
+		outline: none; 
+	}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<input type="text" id="t1">
+		<ul id="ul1">
+			
+		</ul>
+	</div>
+	<script>
+	var oT=document.getElementById('t1');
+	var oUl=document.getElementById('ul1');
+	var URL='https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su';
+	oT.onkeyup=function(){
+		jsonp({
+			url:URL,
+			data:{
+				wd:oT.value,
+			},
+			success:function(json){
+				var arr=json.s;
+				for(var i=0;i<arr.length;i++){
+					var oLi=document.createElement('li');
+					oLi.innerHTML=arr[i];
+					oUl.appendChild(oLi);
+				}
+			}
+		})
+	}
+	</script>
+</body>
+</html>
